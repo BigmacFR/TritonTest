@@ -1,0 +1,3 @@
+Cette definition spring permet de créer des instances unique de la classe Person chaque fois que le bean du nom myTestBean est demandé.
+Les instances sont créées en faisant appel à la fonction createNew en passant en paramètre la variable ${first.name} et le bean du nom "phone".
+Il s'assure aussi que le bean dataSource soit initialisé avant la création du bean myTestBean.

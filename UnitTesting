@@ -1,0 +1,25 @@
+La façon la plus propre aurait été d'ajouter un setUp a la classe test pour préparer le Time.
+
+public void setUp(){
+	DateTimeUtils.setCurrentMillisFixed(new DateTime(2013, 1, 1, 10, 00).getMillis());
+}
+
+public void tearDown(){
+   DateTimeUtils.setCurrentMillisSystem();
+}
+
+Comme il n'est pas possible de toucher à la classe test je vais procéder autrement.
+En assument que la variable "service" de la classe test est instancié par spring.
+Créer une classe :
+
+public class MockLamaWoolService extend LamaWoolService{
+
+	public boolean isWoolTooOldToSell(DateTime shearDate) {
+		DateTimeUtils.setCurrentMillisFixed(new DateTime(2013, 1, 1, 10, 00).getMillis());
+		super.isWoolTooOldToSell(shearDate);
+		DateTimeUtils.setCurrentMillisSystem();
+	}
+}
+
+Il faudra alors modifier le test-context.xml de la classe LamaWoolServiceTest 
+pour que la variable "service" pointe sur le Mock plutôt que la vrai classe.

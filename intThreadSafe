@@ -1,0 +1,27 @@
+3 way to increment integer safely
+
+1. Use a AtomicInteger and increment it using incrementAndGet()
+2. Synchronized a unique method allow to increment the variable.
+
+private int count = 0;
+
+public synchronized int increment(){
+	return count++;
+}
+
+3. Synchronized each block who do increment on a unique lock object.
+
+public int count = 0;
+public static final Object COUNT_LOCK = new Object();
+
+function1(){
+	synchronized(COUNT_LOCK){
+		count++;
+	}
+}
+
+function2(){
+	synchronized(COUNT_LOCK){
+		++count;
+	}	
+}

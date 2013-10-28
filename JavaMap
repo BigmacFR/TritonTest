@@ -1,0 +1,2 @@
+Pour faire le compte d'appel à get() et put() j'utiliserais une classe qui dérive de Map en surchargeant 
+les méthodes en question pour faire incrémenter un conmpteur avant de faire appel au parent.
